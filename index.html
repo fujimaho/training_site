@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +7,13 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <header>
+        <script>
+            var today = new Date();
+            var show = today.getFullYear() + '/' +   today.getMonth() + '/' + today.getDate();
+            document.write(show);
+        </script>
+    </header>
     <div class="content">
         <h1>お問い合わせ</h1>
         <p>お名前：<input type="text" name="name"></p>
@@ -15,5 +21,54 @@
         <p>お問い合わせ：<input type="text" name="content"></p>
         <button>送信</button>
     </div>
+
+    <p id="timer">00:00:00</p>
+    <button id="start_stop" >START</button>
+
+    <script>
+        //開始時間のインスタンス作成順ん日
+        var start;
+        //時間を止めるために必要
+        var timer_id ;
+
+        //0を追加するメソッド
+        var addZero = function(val){
+            if(val < 10 ){
+                val = '0' + val;
+            }
+            return val;
+        };
+
+        document.getElementById('start_stop').addEventListener('click',function(){
+        if(this.innerHTML === 'START'){
+            //開始時間を取得する準備
+            start = new Date();
+            //開始時間と現在の時間の差の取得を繰り返す。
+            timer_id = setInterval(goTimer,10);
+            //STARTが押されるとSTOPにボタンが変わる。
+            this.innerHTML = 'STOP';
+            //STOPが表示されている時
+        }else{
+            //処理を止める。           
+            clearInterval(timer_id);
+            //STOPに表示を変える。
+            this.innerHTML = "START";
+        }
+        });  
+        
+        
+        var goTimer = function(){
+           var now = new Date();            
+           var milli = now.getTime() - start.getTime();
+           var second = Math.floor(milli / 1000);
+           var minutes = Math.floor(second / 60);
+           var hour = Math.floor(minutes / 60);
+
+           second = second - minutes * 60;
+           minutes = minutes - minutes * 60;
+
+           document.getElementById('timer').innerHTML = addZero(hour) + ':' +  addZero(minutes) +  ':' + addZero(second);
+        }
+    </script>
 </body>
 </html>
