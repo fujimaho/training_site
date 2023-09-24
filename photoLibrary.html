@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>phot</title>
+</head>
+<body>
+    <h1>写真たち</h1>
+    <div id="imgLibrary">
+        <div class="phot">
+            <div class="inner">
+                <p>投稿者</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var images= [
+        {
+            "path" : "img/img01.png",
+            "name" : "name01",
+            "caption" : "アルパカ"
+        },
+        {
+            "path" : "img/img02.png",
+            "name" : "name02",
+            "caption" : "ビスカッチャ"
+        },
+        {
+            "path" : "img/img03.png",
+            "name" : "name03",
+            "caption" : "ひつじ"
+        } 
+    ];
+
+    var img;
+    for(var i = 0; i < images.length; i++){
+    img = document.createElement('img');
+    img.setAttribute('src', images[i].path);
+    document.getElementById("imgLibrary").appendChild(img);
+    }
+
+
+
+    </script>
+</body>
+</html>
